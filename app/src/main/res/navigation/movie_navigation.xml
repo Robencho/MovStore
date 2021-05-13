@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.rubio.movstore.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rubio.movstore.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catalogueFragment"
+        android:name="com.rubio.movstore.ui.movcatalogue.CatalogueFragment"
+        android:label="CatalogueFragment"
+        tools:layout="@layout/fragment_catalogue">
+        <action
+            android:id="@+id/action_catalogueFragment_to_detailCatalogueMovStoreFragment"
+            app:destination="@id/detailCatalogueMovStoreFragment" />
+        <argument
+            android:name="category"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="example.com/catalogue/{category}" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCatalogueMovStoreFragment"
+        android:name="com.rubio.movstore.ui.movcatalogue.DetailCatalogueMovStoreFragment"
+        android:label="DetailCatalogueMovStoreFragment"
+        tools:layout="@layout/fragment_detail_catalogue_mov_store">
+        <argument
+            android:name="imageDetailMovie"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="titleMovieDetail"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="originalLanguage"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="releaseDate"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="voteAverage"
+            app:argType="float" />
+        <argument
+            android:name="voteCount"
+            app:argType="integer" />
+        <argument
+            android:name="overview"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>
