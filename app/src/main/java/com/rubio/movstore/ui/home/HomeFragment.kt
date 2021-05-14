@@ -11,11 +11,15 @@ import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
+import com.rubio.movstore.ui.movcatalogue.adapter.SlidersAdapter
+import com.rubio.movstore.ui.movcatalogue.sliders.SliderOneFragment
+import com.rubio.movstore.ui.movcatalogue.sliders.SliderThreeFragment
+import com.rubio.movstore.ui.movcatalogue.sliders.SliderTwoFragment
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         observeLiveData()
+        setupSliders()
+
+        homeViewModel.showSliders()
     }
 
     private fun setupListeners() {
@@ -51,5 +58,14 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun setupSliders() {
+        val sliders: ArrayList<Fragment> = arrayListOf(
+            SliderOneFragment(),
+            SliderTwoFragment(),
+            SliderThreeFragment()
+        )
+        val adapter = SlidersAdapter(sliders, this)
+        binding.vpImages.adapter = adapter
+    }
 
 }
