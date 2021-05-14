@@ -1,11 +1,11 @@
 package com.rubio.movstore.ui.movcatalogue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -35,7 +35,7 @@ class CatalogueFragment : Fragment() {
 
         val categoryDeepLink = args.category
         catalogueAdapter.onItemClicked = {
-            val snackBar =   Snackbar.make(
+            val snackBar = Snackbar.make(
                 requireContext(),
                 binding.rvListCatalogue,
                 "The category is: $categoryDeepLink",
@@ -64,7 +64,8 @@ class CatalogueFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        catalogueViewModel.getMovieStore()
+        catalogueViewModel.getMoviesFromLocalDB()
+
         binding.rvListCatalogue.run {
             adapter = catalogueAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -85,9 +86,19 @@ class CatalogueFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        catalogueViewModel.listMovStoreResponse.observe(viewLifecycleOwner, Observer {
-            catalogueAdapter.addMovies(it)
-            homeViewModel.showLoading.value = false
+        catalogueViewModel.statusLocalDB.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                catalogueViewModel.listMovStoreFromLocalDB.observe(viewLifecycleOwner, Observer {
+                    catalogueAdapter.addMovies(it)
+                    homeViewModel.showLoading.value = false
+                })
+            } else {
+                catalogueViewModel.getMovieStoreFromApi()
+                catalogueViewModel.listMovStoreResponse.observe(viewLifecycleOwner, Observer {
+                    catalogueAdapter.addMovies(it)
+                    homeViewModel.showLoading.value = false
+                })
+            }
         })
     }
 }
