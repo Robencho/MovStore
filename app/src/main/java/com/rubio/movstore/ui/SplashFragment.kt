@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentSplashBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
+import com.rubio.movstore.ui.login.LoginViewModel
 
 class SplashFragment : Fragment() {
 
-    lateinit var binding: FragmentSplashBinding
+    private lateinit var binding: FragmentSplashBinding
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,31 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        timer()
+        // timer()
+        setupInit()
+        observeLiveData()
+    }
+
+    private fun setupInit() {
+        loginViewModel.gertUser()
+    }
+
+    private fun observeLiveData() {
+        loginViewModel.existUser.observe(viewLifecycleOwner, Observer { existUser ->
+            if (existUser) {
+                loginViewModel.getStateLoginByUser(loginViewModel.user.user_id)
+            } else {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToRegisterFragment())
+            }
+        })
+
+        loginViewModel.initSetup.observe(viewLifecycleOwner, Observer { isLogin ->
+            if (isLogin) {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+            } else {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
+            }
+        })
     }
 
     private fun timer() {

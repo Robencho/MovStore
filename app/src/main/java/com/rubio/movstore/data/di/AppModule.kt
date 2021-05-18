@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.rubio.movstore.data.apiservice.MoviesApi
 import com.rubio.movstore.data.db.LocalDataBaseInject
 import com.rubio.movstore.data.db.moviedao.MovieStoreDao
+import com.rubio.movstore.data.db.userdao.UserDao
 import com.rubio.movstore.utils.MovStoreConstants
 import dagger.Module
 import dagger.Provides
@@ -36,12 +37,17 @@ object AppModule {
     }
 
     @Provides
+    fun provideUserLoginDao(appDatabase: LocalDataBaseInject):UserDao{
+        return appDatabase.userLoginDao()
+    }
+
+    @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): LocalDataBaseInject {
         return Room.databaseBuilder(
             appContext,
             LocalDataBaseInject::class.java,
-            "RssReader"
+            "MoviesDB"
         ).build()
     }
 }
