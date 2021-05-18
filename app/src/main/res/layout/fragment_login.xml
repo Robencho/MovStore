@@ -15,6 +15,22 @@
         android:layout_height="match_parent"
         android:background="#B0B0B0"
         tools:context=".ui.login.LoginFragment">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_background_app"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="#fff"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,21 +42,31 @@
             app:layout_constraintBottom_toBottomOf="parent">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/StyleForms">
                 <EditText
                     android:id="@+id/etUserName"
                     android:hint="User name"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:background="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/StyleForms">
                 <EditText
                     android:id="@+id/etUserPassword"
                     android:hint="Your password"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:background="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"

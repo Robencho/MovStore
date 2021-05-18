@@ -13,6 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.login.RegisterFragment">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_background_app"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrate"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="#fff"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,39 +41,63 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="wrap_content"
+                android:textColorLink="#fff"
+                style="@style/StyleForms">
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUserName"
                     android:hint="Your name"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
+                    android:maxLength="20"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/StyleForms">
                 <EditText
                     android:id="@+id/etUserDocument"
                     android:hint="Your document"
+                    android:background="@android:color/transparent"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
+                    android:maxLength="20"
+                    android:inputType="number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/StyleForms">
                 <EditText
                     android:id="@+id/etUserEmail"
                     android:hint="Your email"
+                    android:textSize="22sp"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="30"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textColor="#ffffff"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/StyleForms">
                 <EditText
                     android:id="@+id/etUserPassWord"
                     android:hint="Your password"
+                    android:textSize="22sp"
+                    android:maxLength="6"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textColor="#ffffff"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveUser"

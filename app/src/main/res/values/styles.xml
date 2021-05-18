@@ -4,4 +4,10 @@
     <style name="CollapsingTitle">
         <item name="android:textColor">#ffffff</item>
     </style>
+    <style name="StyleForms">
+        <item name="android:textColorHint">#D7D4D4</item>
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>
