@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.rubio.movstore.databinding.ActivityMainBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
+import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var catalogueViewModel: CatalogueViewModel
+    private lateinit var loginViewModel:LoginViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         catalogueViewModel = ViewModelProvider(this).get(CatalogueViewModel::class.java)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.homeViewModel = homeViewModel
     }
 }

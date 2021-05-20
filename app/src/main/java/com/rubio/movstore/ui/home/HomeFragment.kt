@@ -7,18 +7,22 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
+import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.adapter.SlidersAdapter
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderOneFragment
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderThreeFragment
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderTwoFragment
+import com.rubio.movstore.utils.PreferencesHelper
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,11 @@ class HomeFragment : Fragment() {
         setupSliders()
 
         homeViewModel.showSliders()
+        setupInitHome()
+    }
+
+    private fun setupInitHome() {
+        loginViewModel.closeSessionResponse.value = true
     }
 
     private fun setupListeners() {
@@ -52,10 +61,23 @@ class HomeFragment : Fragment() {
         binding.cat1.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCatalogueFragment())
         }
+
+        binding.btnCloseSession.setOnClickListener {
+            val username = PreferencesHelper(requireActivity()).prefUserName
+            val password = PreferencesHelper(requireActivity()).prefUserPassword
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                loginViewModel.closeSession(username, password)
+            }
+
+        }
     }
 
     private fun observeLiveData() {
-
+        loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
+            if (it == false) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            }
+        })
     }
 
     private fun setupSliders() {
