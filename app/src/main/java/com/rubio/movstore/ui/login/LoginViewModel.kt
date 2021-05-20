@@ -1,10 +1,12 @@
 package com.rubio.movstore.ui.login
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rubio.movstore.data.models.User
 import com.rubio.movstore.domain.usecases.CreateNewUser
+import com.rubio.movstore.utils.PreferencesHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,15 +17,17 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
     val existUser = MutableLiveData<Boolean>()
     val initSetup = MutableLiveData<Boolean>()
     var user: User = User(0)
-    val stateLoginInit = MutableLiveData<Boolean>()
-    var stateLogin = MutableLiveData<Boolean>()
-    var closeSessionState = MutableLiveData<Boolean>()
+    val validateSessionInit = MutableLiveData<Boolean>()
+    var validateStateSession = MutableLiveData<Boolean>()
+    var closeSessionResponse = MutableLiveData<Boolean>()
 
-    fun insertNewUser(user: User) {
+    fun insertNewUser(user: User, context: Context) {
         user.let {
             viewModelScope.launch {
                 createNewUser.insertNewUser(user, response = {
-                    stateLoginInit.postValue(it)
+                    PreferencesHelper(context).prefUserName = user.userName.toString()
+                    PreferencesHelper(context).prefUserPassword = user.userPassword.toString()
+                    validateSessionInit.postValue(it)
                 })
             }
         }
@@ -42,7 +46,7 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
                         it.get(0).userLoginState
                     )
                     existUser.value = true
-                }else{
+                } else {
                     existUser.value = false
                 }
             }
@@ -57,19 +61,19 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
         }
     }
 
-    fun initSession(userName:String, password:String ){
+    fun initSession(userName: String, password: String) {
         viewModelScope.launch {
             createNewUser.initSession(userName, password, response = {
-                stateLogin.value = it
+                validateStateSession.value = it
             })
         }
     }
 
-    fun closeSession(userName:String, password:String){
+    fun closeSession(userName: String, password: String) {
         viewModelScope.launch {
-            createNewUser.closeSession(userName,password, response = {
-                stateLogin.value = false
-                closeSessionState.value = it
+            createNewUser.closeSession(userName, password, response = {
+                validateStateSession.value = false
+                closeSessionResponse.value = it
             })
         }
     }

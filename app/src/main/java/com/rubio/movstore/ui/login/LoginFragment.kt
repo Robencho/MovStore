@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentLoginBinding
 
@@ -39,7 +40,7 @@ class LoginFragment : Fragment() {
         observeLiveData()
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
         binding.btnLogin.setOnClickListener {
             validateLogin(
                 binding.etUserName.text.toString(),
@@ -47,13 +48,23 @@ class LoginFragment : Fragment() {
             )
         }
     }
-    private fun validateLogin(userName:String, password:String ){
+
+    private fun validateLogin(userName: String, password: String) {
         loginViewModel.initSession(userName, password)
     }
-    private fun observeLiveData(){
-        loginViewModel.stateLogin.observe(viewLifecycleOwner, Observer {
-            if (it){
+
+    private fun observeLiveData() {
+        loginViewModel.validateStateSession.observe(viewLifecycleOwner, Observer {
+            if (it) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+            } else {
+                val snackBar = Snackbar.make(
+                    requireContext(),
+                    binding.contentLoginModule,
+                    "Usuario o contraseña incorrectos!!",
+                    5000
+                )
+                snackBar.show()
             }
         })
     }

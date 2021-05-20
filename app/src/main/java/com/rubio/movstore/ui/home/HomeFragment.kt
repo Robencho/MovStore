@@ -12,12 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
-import com.rubio.movstore.ui.login.LoginFragmentDirections
 import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.adapter.SlidersAdapter
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderOneFragment
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderThreeFragment
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderTwoFragment
+import com.rubio.movstore.utils.PreferencesHelper
 
 class HomeFragment : Fragment() {
 
@@ -49,6 +49,11 @@ class HomeFragment : Fragment() {
         setupSliders()
 
         homeViewModel.showSliders()
+        setupInitHome()
+    }
+
+    private fun setupInitHome() {
+        loginViewModel.closeSessionResponse.value = true
     }
 
     private fun setupListeners() {
@@ -58,17 +63,20 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnCloseSession.setOnClickListener {
-            loginViewModel.closeSession(
-                "Poncho",
-                "Mapis1"
-            )
+            val username = PreferencesHelper(requireActivity()).prefUserName
+            val password = PreferencesHelper(requireActivity()).prefUserPassword
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                loginViewModel.closeSession(username, password)
+            }
+
         }
     }
 
     private fun observeLiveData() {
-        loginViewModel.closeSessionState.observe(viewLifecycleOwner, Observer {
-
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+        loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
+            if (it == false) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            }
         })
     }
 

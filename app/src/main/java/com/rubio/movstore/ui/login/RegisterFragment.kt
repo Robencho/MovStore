@@ -1,11 +1,11 @@
 package com.rubio.movstore.ui.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -57,12 +57,12 @@ class RegisterFragment : Fragment() {
             binding.etUserPassWord.text.toString(),
             false
         )
-        loginViewModel.insertNewUser(user)
+        loginViewModel.insertNewUser(user, requireActivity())
     }
 
-    private fun observeLiveData(){
-        loginViewModel.stateLoginInit.observe(viewLifecycleOwner, Observer {
-            if (!it){
+    private fun observeLiveData() {
+        loginViewModel.validateSessionInit.observe(viewLifecycleOwner, Observer {
+            if (!it) {
                 findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
             }
         })
