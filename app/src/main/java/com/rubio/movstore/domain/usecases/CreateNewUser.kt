@@ -28,4 +28,10 @@ class CreateNewUser @Inject constructor(private val loginRepository:LoginReposit
             response(it)
         })
     }
+
+    suspend fun closeSession(userName:String, password:String, response: (data: Boolean) -> Unit){
+        loginRepository.closeSession(userName, password, response = {
+            response(it)
+        })
+    }
 }

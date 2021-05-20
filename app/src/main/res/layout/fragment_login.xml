@@ -65,7 +65,7 @@
                     android:textSize="22sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="10"
+                    android:maxLength="15"
                     android:background="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton

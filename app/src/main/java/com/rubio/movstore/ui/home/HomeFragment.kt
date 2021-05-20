@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
+import com.rubio.movstore.ui.login.LoginFragmentDirections
+import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.adapter.SlidersAdapter
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderOneFragment
 import com.rubio.movstore.ui.movcatalogue.sliders.SliderThreeFragment
@@ -19,6 +22,7 @@ import com.rubio.movstore.ui.movcatalogue.sliders.SliderTwoFragment
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +56,20 @@ class HomeFragment : Fragment() {
         binding.cat1.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCatalogueFragment())
         }
+
+        binding.btnCloseSession.setOnClickListener {
+            loginViewModel.closeSession(
+                "Poncho",
+                "Mapis1"
+            )
+        }
     }
 
     private fun observeLiveData() {
+        loginViewModel.closeSessionState.observe(viewLifecycleOwner, Observer {
 
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+        })
     }
 
     private fun setupSliders() {

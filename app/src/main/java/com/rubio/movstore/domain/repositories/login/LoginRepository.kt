@@ -25,4 +25,9 @@ class LoginRepository @Inject constructor(private val userDao: UserDao) {
         response(userDao.getSession(userName))
     }
 
+    suspend fun closeSession(userName:String, password:String, response: (data: Boolean) -> Unit){
+       userDao.closeSession(userName, password)
+        response(userDao.getSession(userName))
+    }
+
 }

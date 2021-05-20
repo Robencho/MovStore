@@ -17,6 +17,7 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
     var user: User = User(0)
     val stateLoginInit = MutableLiveData<Boolean>()
     var stateLogin = MutableLiveData<Boolean>()
+    var closeSessionState = MutableLiveData<Boolean>()
 
     fun insertNewUser(user: User) {
         user.let {
@@ -60,6 +61,15 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
         viewModelScope.launch {
             createNewUser.initSession(userName, password, response = {
                 stateLogin.value = it
+            })
+        }
+    }
+
+    fun closeSession(userName:String, password:String){
+        viewModelScope.launch {
+            createNewUser.closeSession(userName,password, response = {
+                stateLogin.value = false
+                closeSessionState.value = it
             })
         }
     }

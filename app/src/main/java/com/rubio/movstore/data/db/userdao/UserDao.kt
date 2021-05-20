@@ -26,4 +26,7 @@ interface UserDao {
 
     @Query("select user_login_state from user_table where user_name =:userName")
     suspend fun getSession(userName:String):Boolean
+
+    @Query("UPDATE user_table set user_login_state = 0 where user_name = :userName and user_password =:password")
+    suspend fun closeSession(userName:String, password:String)
 }
