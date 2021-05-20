@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val getMovieImages: GetCatalogue) : ViewModel() {
     var showLoading = MutableLiveData<Boolean>(false)
-
+    var isHome = MutableLiveData<Boolean>(false)
     var sliders = MutableLiveData<SliderModel>()
 
     fun timerLoading() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/btnHome"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        android:titleCondensed="Home 2"/>
+    <item android:id="@+id/btnMovies"
+        android:icon="@drawable/ic_movies"
+        android:title="Movies"
+        android:titleCondensed="Movies 2"/>
+    <item android:id="@+id/btnSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings"
+        android:titleCondensed="Settings 2"/>
+</menu>

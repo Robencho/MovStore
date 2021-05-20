@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
 
     private fun setupInitHome() {
         loginViewModel.closeSessionResponse.value = true
+        homeViewModel.isHome.value = true
     }
 
     private fun setupListeners() {
@@ -75,6 +76,7 @@ class HomeFragment : Fragment() {
     private fun observeLiveData() {
         loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
             if (it == false) {
+                homeViewModel.isHome.value = false
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
         })

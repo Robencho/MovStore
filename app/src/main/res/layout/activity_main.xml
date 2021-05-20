@@ -33,5 +33,14 @@
             android:id="@+id/toolbar"
             layout="@layout/layout_loading"
             android:visibility="@{homeViewModel.showLoading ? View.VISIBLE : View.GONE}" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{homeViewModel.isHome()? View.VISIBLE: View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
