@@ -1,4 +1,4 @@
-package com.rubio.movstore.ui.movcatalogue.sliders
+package com.rubio.movstore.ui.home.sliders
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

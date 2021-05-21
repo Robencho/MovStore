@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#BA5A5A"
-        tools:context=".ui.movcatalogue.sliders.SliderThreeFragment">
+        tools:context=".ui.home.sliders.SliderThreeFragment">
 
         <ImageView
             android:id="@+id/SliderImg3"

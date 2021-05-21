@@ -14,9 +14,9 @@ import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
 import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.adapter.SlidersAdapter
-import com.rubio.movstore.ui.movcatalogue.sliders.SliderOneFragment
-import com.rubio.movstore.ui.movcatalogue.sliders.SliderThreeFragment
-import com.rubio.movstore.ui.movcatalogue.sliders.SliderTwoFragment
+import com.rubio.movstore.ui.home.sliders.SliderOneFragment
+import com.rubio.movstore.ui.home.sliders.SliderThreeFragment
+import com.rubio.movstore.ui.home.sliders.SliderTwoFragment
 import com.rubio.movstore.utils.PreferencesHelper
 
 class HomeFragment : Fragment() {
