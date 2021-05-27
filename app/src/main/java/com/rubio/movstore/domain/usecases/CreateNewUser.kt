@@ -13,9 +13,11 @@ class CreateNewUser @Inject constructor(private val loginRepository:LoginReposit
     }
 
     suspend fun gertUser(response:(data:List<User>)->Unit){
+        var respon = listOf<User>()
         loginRepository.getUser {
-            response(it)
+            respon = it
         }
+            response(respon)
     }
     suspend fun getStateLoginByUser(userId:Int?, response: (data: Boolean) -> Unit){
         loginRepository.getStateLoginByUser(userId, response = {
