@@ -16,7 +16,19 @@ class CatalogueViewModel @Inject constructor(private val useCase1: GetCatalogue)
     var listMovStoreResponse = MutableLiveData<List<Movie>>()
     var listMovStoreFromLocalDB = MutableLiveData<List<Movie>>()
     var statusLocalDB = MutableLiveData<Boolean>(false)
+    var showSimpleToolbar = MutableLiveData<Boolean>(false)
+    var showFullToolbar = MutableLiveData<Boolean>(false)
+    var titleToolbar = MutableLiveData<String>()
 
+    fun showFullToolbar() {
+        showFullToolbar.value = true
+        showSimpleToolbar.value = false
+    }
+
+    fun showSimpleToolbar() {
+        showFullToolbar.value = false
+        showSimpleToolbar.value = true
+    }
 
     fun getMoviesFromLocalDB() {
         viewModelScope.launch {

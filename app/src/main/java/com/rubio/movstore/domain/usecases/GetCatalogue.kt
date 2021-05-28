@@ -30,8 +30,14 @@ class GetCatalogue @Inject constructor(private val catalogueRepository: Catalogu
     }
 
     suspend fun getAllMoviesLocalDB(response: (data: (List<Movie>)) -> Unit) {
+        var responseListMovie = listOf<Movie>()
         catalogueRepository.getMoviesFromLocalDB {
-            response(it)
+            responseListMovie = it
         }
+        response(responseListMovie)
+    }
+
+    fun toFahrenheit(degree: Float): Float {
+        return degree * 9 / 5 + 32
     }
 }

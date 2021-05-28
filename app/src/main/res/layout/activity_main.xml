@@ -17,8 +17,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+        <include
+            android:id="@+id/toolbarMain"
+            layout="@layout/toolbar_main"
+            android:visibility="@{catalogueViewModel.showSimpleToolbar? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <include
+            android:id="@+id/fullToolbarMain"
+            layout="@layout/full_toolbar_main"
+            android:visibility="@{catalogueViewModel.showFullToolbar? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/home_nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
@@ -30,14 +44,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:navGraph="@navigation/movie_navigation" />
         <include
-            android:id="@+id/toolbar"
+            android:id="@+id/loading"
             layout="@layout/layout_loading"
             android:visibility="@{homeViewModel.showLoading ? View.VISIBLE : View.GONE}" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigationBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{homeViewModel.isHome()? View.VISIBLE: View.GONE}"
+            android:background="@color/primary"
+            android:tooltipText="Holaaaaa"
+            app:itemTextAppearanceActive="@color/primary_text"
+            app:itemTextAppearanceInactive="@color/secondary_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

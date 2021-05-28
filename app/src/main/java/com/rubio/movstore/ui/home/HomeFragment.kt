@@ -19,12 +19,13 @@ import com.rubio.movstore.databinding.FragmentHomeBinding
 import com.rubio.movstore.ui.home.sliders.adapter.SlidersAdapter
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
 import com.rubio.movstore.ui.login.LoginViewModel
-import com.rubio.movstore.utils.PreferencesHelper
+import com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val catalogueViewModel: CatalogueViewModel by activityViewModels()
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var binding: FragmentHomeBinding
 
@@ -55,27 +56,31 @@ class HomeFragment : Fragment() {
         setupSliders()
 
         homeViewModel.showSliders()
+        catalogueViewModel.showSimpleToolbar()
         setupInitHome()
     }
 
     private fun setupInitHome() {
+        catalogueViewModel.titleToolbar.value = "Home"
         loginViewModel.closeSessionResponse.value = true
         homeViewModel.isHome.value = true
     }
 
     private fun setupListeners() {
+
         homeViewModel.timerLoading()
         binding.cat1.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCatalogueFragment())
         }
 
-        binding.btnCloseSession.setOnClickListener {
-            val username = PreferencesHelper(requireActivity()).prefUserName
-            val password = PreferencesHelper(requireActivity()).prefUserPassword
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                loginViewModel.closeSession(username, password)
-            }
-        }
+
+        /*   binding.btnCloseSession.setOnClickListener {
+               val username = PreferencesHelper(requireActivity()).prefUserName
+               val password = PreferencesHelper(requireActivity()).prefUserPassword
+               if (username.isNotEmpty() && password.isNotEmpty()) {
+                   loginViewModel.closeSession(username, password)
+               }
+           }*/
     }
 
     private fun observeLiveData() {
