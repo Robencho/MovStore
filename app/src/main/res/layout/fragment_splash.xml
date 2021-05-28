@@ -29,7 +29,7 @@
             android:textAlignment="center"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="@color/primary_light"
+            android:textColor="@color/primary_text"
             android:text="Loading..."
             app:layout_constraintTop_toBottomOf="@+id/ic_splash"
             app:layout_constraintStart_toStartOf="parent"
