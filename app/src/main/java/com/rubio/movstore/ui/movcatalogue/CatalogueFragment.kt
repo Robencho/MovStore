@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.rubio.movstore.R
 import com.rubio.movstore.databinding.FragmentCatalogueBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
@@ -33,16 +32,16 @@ class CatalogueFragment : Fragment() {
         super.onCreate(savedInstanceState)
         homeViewModel.showLoading.value = true
 
-        val categoryDeepLink = args.category
-        catalogueAdapter.onItemClicked = {
-            val snackBar = Snackbar.make(
-                requireContext(),
-                binding.rvListCatalogue,
-                "The category is: $categoryDeepLink",
-                5000
-            )
-            snackBar.show()
-        }
+        /* val categoryDeepLink = args.category
+         catalogueAdapter.onItemClicked = {
+             val snackBar = Snackbar.make(
+                 requireContext(),
+                 binding.rvListCatalogue,
+                 "The category is: $categoryDeepLink",
+                 5000
+             )
+             snackBar.show()
+         }*/
     }
 
     override fun onCreateView(
@@ -64,6 +63,8 @@ class CatalogueFragment : Fragment() {
     }
 
     private fun setupListeners() {
+        catalogueViewModel.titleToolbar.value = "Movies"
+        catalogueViewModel.showFullToolbar()
         catalogueViewModel.getMoviesFromLocalDB()
 
         binding.rvListCatalogue.run {
