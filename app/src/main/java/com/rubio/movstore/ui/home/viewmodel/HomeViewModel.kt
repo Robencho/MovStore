@@ -1,10 +1,11 @@
 package com.rubio.movstore.ui.home.viewmodel
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rubio.movstore.domain.models.Slider
 import com.rubio.movstore.domain.usecases.GetCatalogue
-import com.rubio.movstore.ui.movcatalogue.model.SliderModel
 import com.rubio.movstore.utils.MovStoreConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val getMovieImages: GetCatalogue) : ViewModel() {
     var showLoading = MutableLiveData<Boolean>(false)
     var isHome = MutableLiveData<Boolean>(false)
-    var sliders = MutableLiveData<SliderModel>()
+    var sliders = MutableLiveData<List<Slider>>()
 
     fun timerLoading() {
         val timer = object : CountDownTimer(5000, 1000) {
@@ -28,11 +29,20 @@ class HomeViewModel @Inject constructor(private val getMovieImages: GetCatalogue
 
     fun showSliders() {
         getMovieImages.getListCatalogue(MovStoreConstants.VALUE_MOVIE_POPULAR, response = {
-            sliders.value = SliderModel(
-                it?.get(0)?.backdropPath,
-                it?.get(1)?.backdropPath,
-                it?.get(2)?.backdropPath
-            )
+            it?.let {
+                val slidFilter = it.filterIndexed { index, _ -> (index in 0..3) }
+                val filterLIst = ArrayList<Slider>()
+                for (i in slidFilter) {
+                    filterLIst.add(
+                        Slider(
+                            i.posterPath,
+                            i.title
+                        )
+                    )
+                }
+                sliders.value = filterLIst
+                Log.d("Respnse: ", slidFilter.toString())
+            }
         })
     }
 }
