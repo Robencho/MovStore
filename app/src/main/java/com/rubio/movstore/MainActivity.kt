@@ -1,13 +1,11 @@
 package com.rubio.movstore
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.rubio.movstore.databinding.ActivityMainBinding
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigation()
     }
 
-    private fun setupToolbar(){
+    private fun setupToolbar() {
         binding.fullToolbarMain.btnCloseSession.setOnClickListener {
             val username = PreferencesHelper(this).prefUserName
             val password = PreferencesHelper(this).prefUserPassword
@@ -54,6 +52,15 @@ class MainActivity : AppCompatActivity() {
                 loginViewModel.closeSession(username, password)
             }
         }
+    }
+
+    private fun observerLiveData() {
+        /*loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
+            if (it == false) {
+                homeViewModel.isHome.value = false
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            }
+        })*/
     }
 
     private fun setupNavigation() {

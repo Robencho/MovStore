@@ -26,7 +26,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#000">
+                android:background="@color/primary">
 
                 <ImageView
                     android:id="@+id/imgSlider"
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{sliderModel.title}"
                         android:textSize="18sp"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/primary_text"
                         android:textStyle="italic"/>
                 </LinearLayout>
 

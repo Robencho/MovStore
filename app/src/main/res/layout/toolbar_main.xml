@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary">
+        android:background="@drawable/background_radius_toolbar">
         <TextView
             android:id="@+id/txtTitleToolbar"
             android:layout_width="0dp"
