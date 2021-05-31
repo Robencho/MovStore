@@ -87,12 +87,12 @@ class HomeFragment : Fragment() {
         homeViewModel.sliders.observe(viewLifecycleOwner, Observer {
             sliderAdapter.addSlider(it)
         })
-        loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
+        /*loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
             if (it == false) {
                 homeViewModel.isHome.value = false
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
-        })
+        })*/
     }
 
     private fun setupSliders() {

@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="loginViewModel"
+            type="com.rubio.movstore.ui.login.LoginViewModel" />
+        <variable
             name="homeViewModel"
             type="com.rubio.movstore.ui.home.viewmodel.HomeViewModel" />
         <variable
@@ -52,7 +55,7 @@
             android:id="@+id/navigationBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:tooltipText="Holaaaaa"
+            android:visibility="@{loginViewModel.validateStateSession ? View.VISIBLE :View.GONE}"
             android:background="@drawable/background_radius_bottom_menu"
             app:itemTextAppearanceActive="@color/primary_text"
             app:itemTextAppearanceInactive="@color/secondary_text"

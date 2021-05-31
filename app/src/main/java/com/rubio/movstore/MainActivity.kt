@@ -3,11 +3,14 @@ package com.rubio.movstore
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.rubio.movstore.databinding.ActivityMainBinding
+import com.rubio.movstore.ui.home.HomeFragmentDirections
 import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
 import com.rubio.movstore.ui.login.LoginViewModel
 import com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding.catalogueViewModel = catalogueViewModel
         binding.fullToolbarMain.catalogueViewModel = catalogueViewModel
         binding.toolbarMain.catalogueViewModel = catalogueViewModel
+        binding.loginViewModel = loginViewModel
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.home_nav_host_fragment
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding.navigationBottom.setupWithNavController(navController)
         setupToolbar()
         setupNavigation()
+        observerLiveData()
     }
 
     private fun setupToolbar() {
@@ -55,12 +60,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observerLiveData() {
-        /*loginViewModel.closeSessionResponse.observe(viewLifecycleOwner, Observer {
+        loginViewModel.closeSessionResponse.observe(this, Observer {
             if (it == false) {
                 homeViewModel.isHome.value = false
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+                navController.navigate(R.id.loginFragment)
             }
-        })*/
+        })
     }
 
     private fun setupNavigation() {
