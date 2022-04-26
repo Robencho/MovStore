@@ -1,7 +1,7 @@
 package com.rubio.movstore.domain.usecases
 
 import com.rubio.movstore.data.models.User
-import com.rubio.movstore.domain.repositories.login.LoginRepository
+import com.rubio.movstore.data.repository.login.LoginRepository
 import javax.inject.Inject
 
 class CreateNewUser @Inject constructor(private val loginRepository:LoginRepository) {

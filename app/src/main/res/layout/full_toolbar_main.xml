@@ -6,10 +6,10 @@
     <data>
         <variable
             name="homeViewModel"
-            type="com.rubio.movstore.ui.home.viewmodel.HomeViewModel" />
+            type="com.rubio.movstore.presentation.home.viewmodel.HomeViewModel" />
         <variable
             name="catalogueViewModel"
-            type="com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel" />
+            type="com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

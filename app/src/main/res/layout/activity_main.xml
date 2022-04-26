@@ -6,13 +6,13 @@
     <data>
         <variable
             name="loginViewModel"
-            type="com.rubio.movstore.ui.login.LoginViewModel" />
+            type="com.rubio.movstore.presentation.login.LoginViewModel" />
         <variable
             name="homeViewModel"
-            type="com.rubio.movstore.ui.home.viewmodel.HomeViewModel" />
+            type="com.rubio.movstore.presentation.home.viewmodel.HomeViewModel" />
         <variable
             name="catalogueViewModel"
-            type="com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel" />
+            type="com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel" />
         <import type="android.view.View"/>
     </data>
 

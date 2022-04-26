@@ -6,7 +6,7 @@
     <data>
         <variable
             name="catalogueViewModel"
-            type="com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel" />
+            type="com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel" />
         <import type="android.view.View"/>
     </data>
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        tools:context=".ui.movcatalogue.CatalogueFragment">
+        tools:context=".presentation.movcatalogue.CatalogueFragment">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListCatalogue"
             android:layout_width="match_parent"
