@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.rubio.movstore.ui.SplashFragment"
+        android:name="com.rubio.movstore.presentation.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.rubio.movstore.ui.home.HomeFragment"
+        android:name="com.rubio.movstore.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/catalogueFragment"
-        android:name="com.rubio.movstore.ui.movcatalogue.CatalogueFragment"
+        android:name="com.rubio.movstore.presentation.movcatalogue.CatalogueFragment"
         android:label="CatalogueFragment"
         tools:layout="@layout/fragment_catalogue">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailCatalogueMovStoreFragment"
-        android:name="com.rubio.movstore.ui.movcatalogue.DetailCatalogueMovStoreFragment"
+        android:name="com.rubio.movstore.presentation.movcatalogue.DetailCatalogueMovStoreFragment"
         android:label="DetailCatalogueMovStoreFragment"
         tools:layout="@layout/fragment_detail_catalogue_mov_store">
         <argument
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rubio.movstore.ui.login.LoginFragment"
+        android:name="com.rubio.movstore.presentation.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.rubio.movstore.ui.login.RegisterFragment"
+        android:name="com.rubio.movstore.presentation.login.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action

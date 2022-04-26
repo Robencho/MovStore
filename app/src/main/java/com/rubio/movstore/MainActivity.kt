@@ -7,13 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.rubio.movstore.databinding.ActivityMainBinding
-import com.rubio.movstore.ui.home.HomeFragmentDirections
-import com.rubio.movstore.ui.home.viewmodel.HomeViewModel
-import com.rubio.movstore.ui.login.LoginViewModel
-import com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel
+import com.rubio.movstore.presentation.home.viewmodel.HomeViewModel
+import com.rubio.movstore.presentation.login.LoginViewModel
+import com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel
 import com.rubio.movstore.utils.PreferencesHelper
 import dagger.hilt.android.AndroidEntryPoint
 

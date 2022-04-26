@@ -7,11 +7,11 @@
 
         <variable
             name="movieModel"
-            type="com.rubio.movstore.ui.movcatalogue.MovieModel" />
+            type="com.rubio.movstore.presentation.movcatalogue.MovieModel" />
 
         <variable
             name="detailViewModel"
-            type="com.rubio.movstore.ui.movcatalogue.viewModel.CatalogueViewModel" />
+            type="com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

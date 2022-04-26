@@ -1,8 +1,8 @@
 package com.rubio.movstore.domain.usecases
 
-import com.rubio.movstore.data.apiservice.MoviesApi
+import com.rubio.movstore.data.datasource.remote.MoviesApi
 import com.rubio.movstore.data.models.Movie
-import com.rubio.movstore.domain.repositories.CatalogueRepository
+import com.rubio.movstore.data.repository.MoviesRepository
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -17,8 +17,8 @@ import retrofit2.Call
 
 internal class GetCatalogueTest {
 
-    private var getCatalogue: GetCatalogue? = null
-    private lateinit var repositoryMockK: CatalogueRepository
+    private var getCatalogue: GetMoviesUseCase? = null
+    private lateinit var repositoryMockK: MoviesRepository
     private lateinit var callMockitoRetrofit: Call<*>
 
 
@@ -34,7 +34,7 @@ internal class GetCatalogueTest {
             Call::class.java
         )
         // repositoryMockito = Mockito.mock(CatalogueRepository::class.java)
-        getCatalogue = GetCatalogue(repositoryMockK)
+        getCatalogue = GetMoviesUseCase(repositoryMockK)
 
 
         // Setup a new mock for each test case
@@ -80,7 +80,7 @@ internal class GetCatalogueTest {
     @Disabled("Hasta hacer la implementación")
     @Test
     fun getListCatalogueTest() {
-        every { getCatalogue?.getListCatalogue("algo", response = {}) } answers {
+        every { getCatalogue?.invoke("algo", response = {}) } answers {
 
         }
     }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="loginViewModel"
-            type="com.rubio.movstore.ui.login.LoginViewModel" />
+            type="com.rubio.movstore.presentation.login.LoginViewModel" />
         <import type="android.view.View"/>
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#B0B0B0"
-        tools:context=".ui.login.LoginFragment">
+        tools:context=".presentation.login.LoginFragment">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
