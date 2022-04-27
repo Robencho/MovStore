@@ -1,7 +1,7 @@
 package com.rubio.movstore.domain.usecases
 
 import com.rubio.movstore.data.datasource.remote.MoviesApi
-import com.rubio.movstore.data.models.Movie
+import com.rubio.movstore.data.models.MovieParcelable
 import com.rubio.movstore.data.repository.MoviesRepository
 import io.mockk.coEvery
 import io.mockk.every
@@ -56,9 +56,9 @@ internal class GetCatalogueTest {
     //@Disabled("Hasta que se haga la implementación")
     @Test
     fun insertInDB() {
-        val movies: ArrayList<Movie>? = null
+        val movies: ArrayList<MovieParcelable>? = null
         movies?.add(
-            Movie(
+            MovieParcelable(
                 0,
                 false,
                 "gbhdfh",
@@ -87,8 +87,8 @@ internal class GetCatalogueTest {
 
     @Test
     fun getAllMoviesLocalDBMockK() {
-        val expected = listOf<Movie>()
-        var response1: List<Movie>? = null
+        val expected = listOf<MovieParcelable>()
+        var response1: List<MovieParcelable>? = null
         coEvery {
             getCatalogue?.getAllMoviesLocalDB {
                 response1 = it

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.rubio.movstore.databinding.SliderItemBinding
-import com.rubio.movstore.domain.models.Slider
+import com.rubio.movstore.domain.entities.Slider
 
 class SlidersAdapter(private val viewPager2: ViewPager2) :
     RecyclerView.Adapter<SlidersAdapter.ViewHolder>() {

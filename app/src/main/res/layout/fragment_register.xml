@@ -6,18 +6,14 @@
     <data>
         <variable
             name="registerModel"
-            type="com.rubio.movstore.data.models.User" />
+            type="com.rubio.movstore.data.models.UserParcelable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/secondary_dark"
         tools:context=".presentation.login.RegisterFragment">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_background_app"
-            android:scaleType="centerCrop"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,6 +99,8 @@
                 android:id="@+id/btnSaveUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/accent"
+                android:textColor="@color/primary_text"
                 android:text="Save User"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"/>

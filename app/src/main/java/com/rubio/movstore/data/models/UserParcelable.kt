@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_table")
-data class User(
+data class UserParcelable(
     @PrimaryKey(autoGenerate = true) val user_id: Int,
 
     @ColumnInfo(name = "user_name")

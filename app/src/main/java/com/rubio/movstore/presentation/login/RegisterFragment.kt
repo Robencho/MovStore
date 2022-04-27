@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rubio.movstore.R
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 import com.rubio.movstore.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
@@ -48,8 +48,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun buildNewUser() {
-        var user: User? = null
-        user = User(
+        var user: UserParcelable? = null
+        user = UserParcelable(
             0,
             binding.etUserName.text.toString(),
             binding.etUserDocument.text.toString().toInt(),

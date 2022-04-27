@@ -31,17 +31,6 @@ class CatalogueFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeViewModel.showLoading.value = true
-
-        /* val categoryDeepLink = args.category
-         catalogueAdapter.onItemClicked = {
-             val snackBar = Snackbar.make(
-                 requireContext(),
-                 binding.rvListCatalogue,
-                 "The category is: $categoryDeepLink",
-                 5000
-             )
-             snackBar.show()
-         }*/
     }
 
     override fun onCreateView(
@@ -89,16 +78,20 @@ class CatalogueFragment : Fragment() {
     private fun observeLiveData() {
         catalogueViewModel.statusLocalDB.observe(viewLifecycleOwner, Observer {
             if (it) {
-                catalogueViewModel.listMovStoreFromLocalDB.observe(viewLifecycleOwner, Observer {
-                    catalogueAdapter.addMovies(it)
-                    homeViewModel.showLoading.value = false
-                })
+                catalogueViewModel.listMovStoreFromLocalDB.observe(
+                    viewLifecycleOwner,
+                    Observer { movies ->
+                        catalogueAdapter.addMovies(movies)
+                        homeViewModel.showLoading.value = false
+                    })
             } else {
-                catalogueViewModel.getMovieStoreFromApi()
-                catalogueViewModel.listMovStoreResponse.observe(viewLifecycleOwner, Observer {
-                    catalogueAdapter.addMovies(it)
-                    homeViewModel.showLoading.value = false
-                })
+                args.category?.let { category -> catalogueViewModel.getMovieStoreFromApi(category) }
+                catalogueViewModel.listMovStoreResponse.observe(
+                    viewLifecycleOwner,
+                    Observer { movies ->
+                        catalogueAdapter.addMovies(movies)
+                        homeViewModel.showLoading.value = false
+                    })
             }
         })
     }

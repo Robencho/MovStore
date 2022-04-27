@@ -1,18 +1,18 @@
 package com.rubio.movstore.data.repository.login
 
 import com.rubio.movstore.data.datasource.local.userdao.UserDao
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(private val userDao: UserDao) {
 
-    suspend fun insertNewUser(user: User, response: (data: Boolean) -> Unit) {
+    suspend fun insertNewUser(user: UserParcelable, response: (data: Boolean) -> Unit) {
         userDao.updateUsers(user, response = {
             response(it)
         })
     }
 
-    suspend fun getUser(response: (data: List<User>) -> Unit) {
+    suspend fun getUser(response: (data: List<UserParcelable>) -> Unit) {
         response(userDao.getUser())
     }
 

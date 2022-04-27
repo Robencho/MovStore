@@ -1,6 +1,6 @@
 package com.rubio.movstore.domain.usecases
 
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 import com.rubio.movstore.data.repository.login.LoginRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -14,7 +14,7 @@ internal class CreateNewUserTest {
 
     private var createNewUserTest: CreateNewUser? = null
     private lateinit var loginRepository: LoginRepository
-    private lateinit var user: User
+    private lateinit var user: UserParcelable
 
     @BeforeEach
     fun setUp() {
@@ -42,7 +42,7 @@ internal class CreateNewUserTest {
 
     @Test
     fun gertUser() {
-        var response: List<User>? = null
+        var response: List<UserParcelable>? = null
         val expected = ArrayList<Any>()
         coEvery { createNewUserTest?.gertUser { response = it } } returns Unit
         assertEquals(expected, response)
