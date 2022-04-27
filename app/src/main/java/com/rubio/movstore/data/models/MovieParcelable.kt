@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "movies_table")
-data class Movie(
-    @PrimaryKey(autoGenerate = true) val movie_id:Int,
+data class MovieParcelable(
+    @PrimaryKey(autoGenerate = true) val movie_id:Int?,
 
     @ColumnInfo(name = "adult")
     val adult: Boolean,

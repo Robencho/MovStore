@@ -3,8 +3,9 @@ package com.rubio.movstore.presentation.movcatalogue.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.rubio.movstore.data.models.Movie
+import com.rubio.movstore.data.models.MovieParcelable
 import com.rubio.movstore.databinding.ItemMovStoreBinding
+import com.rubio.movstore.domain.entities.Movie
 
 class CatalogueAdapter : RecyclerView.Adapter<CatalogueAdapter.ViewHolder>() {
 

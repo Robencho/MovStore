@@ -2,4 +2,9 @@
     <string name="app_name">MovStore</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="popular_category">Popular Movies</string>
+    <string name="upcoming_category">Upcoming Movies</string>
+    <string name="top_rated_category">Top Rated Movies</string>
+    <string name="latest_category">Latest Movies</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.rubio.movstore.data.repository
 
-import com.rubio.movstore.data.models.Movie
+import com.rubio.movstore.domain.entities.Movie
 
 interface IMoviesRepository {
     suspend fun getMovies(

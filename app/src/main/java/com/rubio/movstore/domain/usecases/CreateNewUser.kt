@@ -1,19 +1,19 @@
 package com.rubio.movstore.domain.usecases
 
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 import com.rubio.movstore.data.repository.login.LoginRepository
 import javax.inject.Inject
 
 class CreateNewUser @Inject constructor(private val loginRepository:LoginRepository) {
 
-    suspend fun insertNewUser(user:User, response: (data: Boolean) -> Unit){
+    suspend fun insertNewUser(user:UserParcelable, response: (data: Boolean) -> Unit){
         loginRepository.insertNewUser(user, response = {
             response(it)
         })
     }
 
-    suspend fun gertUser(response:(data:List<User>)->Unit){
-        var respon = listOf<User>()
+    suspend fun gertUser(response:(data:List<UserParcelable>)->Unit){
+        var respon = listOf<UserParcelable>()
         loginRepository.getUser {
             respon = it
         }

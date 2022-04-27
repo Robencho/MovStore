@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 import com.rubio.movstore.domain.usecases.CreateNewUser
 import com.rubio.movstore.utils.PreferencesHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,12 +16,12 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
 
     val existUser = MutableLiveData<Boolean>()
     val initSetup = MutableLiveData<Boolean>()
-    var user: User = User(0)
+    var user: UserParcelable = UserParcelable(0)
     val validateSessionInit = MutableLiveData<Boolean>()
     var validateStateSession = MutableLiveData<Boolean>()
     var closeSessionResponse = MutableLiveData<Boolean>()
 
-    fun insertNewUser(user: User, context: Context) {
+    fun insertNewUser(user: UserParcelable, context: Context) {
         user.let {
             viewModelScope.launch {
                 createNewUser.insertNewUser(user, response = {
@@ -37,7 +37,7 @@ class LoginViewModel @Inject constructor(private val createNewUser: CreateNewUse
         viewModelScope.launch {
             createNewUser.gertUser {
                 if (it.isNotEmpty()) {
-                    user = User(
+                    user = UserParcelable(
                         it.get(0).user_id,
                         it.get(0).userName,
                         it.get(0).userDocument,

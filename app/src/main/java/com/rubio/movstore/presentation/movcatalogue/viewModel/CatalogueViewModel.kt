@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rubio.movstore.data.models.Movie
+import com.rubio.movstore.data.models.MovieParcelable
+import com.rubio.movstore.domain.entities.Movie
 import com.rubio.movstore.domain.usecases.GetMoviesLocalDBUseCase
 import com.rubio.movstore.domain.usecases.GetMoviesUseCase
 import com.rubio.movstore.domain.usecases.SaveMovieLocalDBUseCase
@@ -42,7 +43,7 @@ class CatalogueViewModel @Inject constructor(
                 getMoviesLocalDBUseCase.invoke { listMoviesDB ->
                     if (listMoviesDB.isNotEmpty()) {
                         listMovStoreFromLocalDB.value = listMoviesDB
-                        statusLocalDB.value = true
+                        statusLocalDB.value = false
                     } else {
                         statusLocalDB.value = false
                     }
@@ -53,9 +54,9 @@ class CatalogueViewModel @Inject constructor(
         }
     }
 
-    fun getMovieStoreFromApi() {
+    fun getMovieStoreFromApi(category:String) {
         viewModelScope.launch {
-            getMovieUseCase.invoke("popular", response = { moviesResponse ->
+            getMovieUseCase.invoke(category, response = { moviesResponse ->
                 listMovStoreResponse.value = moviesResponse
                 moviesResponse?.let {
                     setMoviesLocalDB(it)

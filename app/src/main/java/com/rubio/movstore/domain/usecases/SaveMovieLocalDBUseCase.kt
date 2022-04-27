@@ -1,11 +1,11 @@
 package com.rubio.movstore.domain.usecases
 
-import com.rubio.movstore.data.models.Movie
 import com.rubio.movstore.data.repository.MoviesRepository
+import com.rubio.movstore.domain.entities.Movie
 import javax.inject.Inject
 
 class SaveMovieLocalDBUseCase @Inject constructor(private val moviesRepository: MoviesRepository) {
-    suspend fun invoke(movs: List<Movie>?){
-        moviesRepository.setMoviesToLocalDB(movs)
+    suspend fun invoke(movies: List<Movie>?){
+        moviesRepository.setMoviesToLocalDB(movies)
     }
 }

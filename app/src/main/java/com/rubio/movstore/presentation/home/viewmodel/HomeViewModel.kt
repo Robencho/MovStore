@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rubio.movstore.domain.models.Slider
+import com.rubio.movstore.domain.entities.Slider
 import com.rubio.movstore.domain.usecases.GetMoviesUseCase
 import com.rubio.movstore.utils.MovStoreConstants
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,22 +1,22 @@
 package com.rubio.movstore.data.datasource.local.userdao
 
 import androidx.room.*
-import com.rubio.movstore.data.models.User
+import com.rubio.movstore.data.models.UserParcelable
 
 @Dao
 interface UserDao {
     @Transaction
-    suspend fun updateUsers(user: User, response:(data:Boolean)->Unit){
+    suspend fun updateUsers(user: UserParcelable, response:(data:Boolean)->Unit){
         insertUser(user)
         val stateLogin = getSession(user.userName.toString())
         response(stateLogin)
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User)
+    suspend fun insertUser(user: UserParcelable)
 
     @Query("select * from user_table")
-    suspend fun getUser(): List<User>
+    suspend fun getUser(): List<UserParcelable>
 
     @Query("select user_login_state from user_table where user_id =:userId")
     suspend fun getLoginState(userId:Int?):Boolean

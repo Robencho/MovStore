@@ -2,12 +2,12 @@ package com.rubio.movstore.data.datasource.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.rubio.movstore.data.models.Movie
+import com.rubio.movstore.data.models.MovieParcelable
 
 
 @Database(
     entities = [
-        Movie::class
+        MovieParcelable::class
     ],
     version = 1,
     exportSchema = false

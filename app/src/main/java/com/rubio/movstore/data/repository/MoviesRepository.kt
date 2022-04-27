@@ -2,8 +2,9 @@ package com.rubio.movstore.data.repository
 
 import com.rubio.movstore.data.datasource.MoviesRemoteDataSourceImpl
 import com.rubio.movstore.data.datasource.local.moviedao.MovieStoreDao
-import com.rubio.movstore.data.models.Movie
-import com.rubio.movstore.data.models.MovieResponse
+import com.rubio.movstore.data.models.*
+import com.rubio.movstore.domain.entities.Movie
+import com.rubio.movstore.domain.entities.MoviesResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,14 +22,14 @@ class MoviesRepository @Inject constructor(
         response: (data: List<Movie>?) -> Unit
     ) {
         moviesRemoteDataSourceImpl.getMovieStoreApi(category, response = {
-           it?.enqueue(object : Callback<MovieResponse>{
+           it?.enqueue(object : Callback<MovieResponseParcelable>{
                 override fun onResponse(
-                    call: Call<MovieResponse>,
-                    response: Response<MovieResponse>
+                    call: Call<MovieResponseParcelable>,
+                    response: Response<MovieResponseParcelable>
                 ) {
-                    response(response.body()?.results)
+                    response(response.body()?.toMovieResponseEntity()?.results)
                 }
-                override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                override fun onFailure(call: Call<MovieResponseParcelable>, t: Throwable) {
                     TODO("Not yet implemented")
                 }
 
@@ -37,11 +38,15 @@ class MoviesRepository @Inject constructor(
     }
 
     suspend fun setMoviesToLocalDB(movies: List<Movie>?) {
-        movieDao.updateMoviesTable(movies)
+        val listMoviesParcelable = mutableListOf<MovieParcelable>()
+        movies?.forEach { listMoviesParcelable.add(it.toMovieParcelable()) }
+        movieDao.updateMoviesTable(listMoviesParcelable)
     }
 
     suspend fun getMoviesFromLocalDB(response: (data: List<Movie>) -> Unit) {
-        response(movieDao.getAllMoviesFromLocal())
+        val listMovies = mutableListOf<Movie>()
+        movieDao.getAllMoviesFromLocal().forEach { listMovies.add(it.toMovieEntity()) }
+        response(listMovies)
     }
 
 }

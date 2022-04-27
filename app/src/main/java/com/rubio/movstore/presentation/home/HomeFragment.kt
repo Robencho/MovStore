@@ -20,6 +20,7 @@ import com.rubio.movstore.presentation.home.sliders.adapter.SlidersAdapter
 import com.rubio.movstore.presentation.home.viewmodel.HomeViewModel
 import com.rubio.movstore.presentation.login.LoginViewModel
 import com.rubio.movstore.presentation.movcatalogue.viewModel.CatalogueViewModel
+import com.rubio.movstore.utils.MovStoreConstants
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
@@ -32,9 +33,13 @@ class HomeFragment : Fragment() {
     private val sliderAdapter by lazy { SlidersAdapter(binding.vpImages) }
     private val sliderHandler = Handler()
 
+
+    private val sliderRunnable = Runnable {
+        binding.vpImages.currentItem = binding.vpImages.currentItem + 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -67,10 +72,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupListeners() {
-
-        homeViewModel.timerLoading()
         binding.cat1.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCatalogueFragment())
+            navigationMovies(MovStoreConstants.VALUE_MOVIE_POPULAR)
+        }
+        binding.cat2.setOnClickListener {
+            navigationMovies(MovStoreConstants.VALUE_MOVIE_LATEST)
+        }
+        binding.cat3.setOnClickListener {
+            navigationMovies(MovStoreConstants.VALUE_MOVIE_TOP_RATED)
+        }
+        binding.cat4.setOnClickListener {
+            navigationMovies(MovStoreConstants.VALUE_MOVIE_UPCOMING)
         }
 
 
@@ -81,6 +93,9 @@ class HomeFragment : Fragment() {
                    loginViewModel.closeSession(username, password)
                }
            }*/
+    }
+    private fun navigationMovies(category:String){
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCatalogueFragment(category))
     }
 
     private fun observeLiveData() {
@@ -118,10 +133,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-    }
-
-    private val sliderRunnable = Runnable {
-        binding.vpImages.currentItem = binding.vpImages.currentItem + 1
     }
 
 }

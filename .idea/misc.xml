@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/RubianAlonsoLlanosAg/AndroidStudioProjects/MovStore/app/src/main/res/layout/fragment_home.xml" value="0.3671875" />
+        <entry key="..\:/Users/RubianAlonsoLlanosAg/AndroidStudioProjects/MovStore/app/src/main/res/layout/fragment_register.xml" value="0.28535353535353536" />
+        <entry key="..\:/Users/RubianAlonsoLlanosAg/AndroidStudioProjects/MovStore/app/src/main/res/layout/fragment_splash.xml" value="0.3671875" />
+        <entry key="..\:/Users/RubianAlonsoLlanosAg/AndroidStudioProjects/MovStore/app/src/main/res/layout/item_mov_store.xml" value="0.17857142857142858" />
+        <entry key="..\:/Users/RubianAlonsoLlanosAg/AndroidStudioProjects/MovStore/app/src/main/res/layout/layout_loading.xml" value="0.3671875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
